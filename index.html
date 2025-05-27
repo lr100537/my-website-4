@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Audi R8 Gen 2</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet" />
+  <style>
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 0% 100%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow:
+          0 0 5px #6bfeff,
+          0 0 15px #6bfeff,
+          0 0 25px #6bfeff,
+          0 0 35px #f6de8d,
+          0 0 55px #f6de8d,
+          0 0 75px #f6de8d;
+      }
+      to {
+        text-shadow:
+          0 0 20px #6bfeff,
+          0 0 40px #6bfeff,
+          0 0 60px #6bfeff,
+          0 0 80px #f6de8d,
+          0 0 100px #f6de8d,
+          0 0 120px #f6de8d;
+      }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      background: linear-gradient(to bottom, #0040ff, #000000);
+      background-size: 100% 200%;
+      animation: gradientBG 20s ease infinite;
+      scroll-behavior: smooth;
+      line-height: 1.6;
+      padding-bottom: 100px;
+    }
+
+    header {
+      text-align: center;
+      padding: 120px 20px 50px;
+    }
+
+    h1 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 4rem;
+      margin: 0;
+      position: relative;
+      color: #6bfeff;
+      text-shadow:
+        0 0 10px #6bfeff,
+        0 0 20px #6bfeff,
+        0 0 30px #6bfeff,
+        0 0 40px #f6de8d,
+        0 0 70px #f6de8d,
+        0 0 80px #f6de8d,
+        0 0 100px #f6de8d;
+      animation: glow 3s ease-in-out infinite alternate, float 4s ease-in-out infinite;
+      user-select: none;
+    }
+
+    main {
+      max-width: 850px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 2rem;
+      margin-bottom: 12px;
+      border-bottom: 2px solid #6bfeff;
+      padding-bottom: 6px;
+      color: #6bfeff;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #e0e0e0;
+    }
+
+    ul {
+      font-size: 1.1rem;
+      color: #e0e0e0;
+      padding-left: 20px;
+    }
+
+    .image-box {
+      text-align: center;
+      margin: 40px 0;
+    }
+
+    .image-box img {
+      max-width: 70%;
+      border-radius: 10px;
+      box-shadow: 0 0 30px rgba(107, 254, 255, 0.6);
+    }
+
+    .links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 60px 0;
+      flex-wrap: wrap;
+    }
+
+    .voltage-button {
+      position: relative;
+    }
+
+    .voltage-button button {
+      color: white;
+      background: #0D1127;
+      padding: 0.7rem 2rem;
+      border-radius: 5rem;
+      border: 4px solid #5978F3;
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      transition: background 0.3s;
+    }
+
+    .voltage-button button:hover {
+      cursor: pointer;
+      background: #0F1C53;
+    }
+
+    .voltage-button button:hover + svg,
+    .voltage-button button:hover + svg + .dots {
+      opacity: 1;
+    }
+
+    .voltage-button svg {
+      display: block;
+      position: absolute;
+      top: -0.75em;
+      left: -0.25em;
+      width: calc(100% + 0.5em);
+      height: calc(100% + 1.5em);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.4s;
+      transition-delay: 0.1s;
+    }
+
+    .voltage-button svg path {
+      stroke-dasharray: 100;
+      filter: url("#glow");
+    }
+
+    .voltage-button svg path.line-1 {
+      stroke: #f6de8d;
+      stroke-dashoffset: 0;
+      animation: spark-1 3s linear infinite;
+    }
+
+    .voltage-button svg path.line-2 {
+      stroke: #6bfeff;
+      stroke-dashoffset: 500;
+      animation: spark-2 3s linear infinite;
+    }
+
+    .voltage-button .dots {
+      opacity: 0;
+      transition: opacity 0.3s;
+      transition-delay: 0.4s;
+    }
+
+    .voltage-button .dots .dot {
+      width: 1rem;
+      height: 1rem;
+      background: white;
+      border-radius: 100%;
+      position: absolute;
+      opacity: 0;
+    }
+
+    .dot-1 { top: 0; left: 20%; animation: fly-up 3s linear infinite; }
+    .dot-2 { top: 0; left: 55%; animation: fly-up 3s linear infinite; animation-delay: 0.5s; }
+    .dot-3 { top: 0; left: 80%; animation: fly-up 3s linear infinite; animation-delay: 1s; }
+    .dot-4 { bottom: 0; left: 30%; animation: fly-down 3s linear infinite; animation-delay: 2.5s; }
+    .dot-5 { bottom: 0; left: 65%; animation: fly-down 3s linear infinite; animation-delay: 1.5s; }
+
+    @keyframes spark-1 { to { stroke-dashoffset: -1000; } }
+    @keyframes spark-2 { to { stroke-dashoffset: -500; } }
+
+    @keyframes fly-up {
+      0% { opacity: 0; transform: translateY(0) scale(0.2); }
+      5% { opacity: 1; transform: translateY(-1.5rem) scale(0.4); }
+      10%, 100% { opacity: 0; transform: translateY(-3rem) scale(0.2); }
+    }
+
+    @keyframes fly-down {
+      0% { opacity: 0; transform: translateY(0) scale(0.2); }
+      5% { opacity: 1; transform: translateY(1.5rem) scale(0.4); }
+      10%, 100% { opacity: 0; transform: translateY(3rem) scale(0.2); }
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 100;
+    }
+
+    .back-to-top button {
+      padding: 10px 20px;
+      border-radius: 20px;
+      background: #5978F3;
+      color: white;
+      border: none;
+      font-weight: 600;
+      font-size: 1rem;
+      box-shadow: 0 0 10px #5978F3;
+      transition: background 0.3s;
+    }
+
+    .back-to-top button:hover {
+      background: #405fcf;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px 0;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #6bfeff;
+      text-shadow:
+        0 0 5px #6bfeff,
+        0 0 10px #6bfeff,
+        0 0 15px #f6de8d,
+        0 0 20px #f6de8d;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header id="top">
+    <h1>GEN 2 Audi R8</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>History</h2>
+      <p>The Audi R8 Gen 2 debuted in 2015 as a refined evolution of Audi’s first-generation supercar. It kept the naturally aspirated V10 engine and introduced sharper styling, better handling, and improved technology.</p>
+    </section>
+
+    <section>
+      <h2>Power & Performance</h2>
+      <ul>
+        <li>Engine: 5.2L V10 naturally aspirated</li>
+        <li>Power Output: Up to 602 hp (in R8 V10 Performance)</li>
+        <li>0-60 mph: ~3.2 seconds</li>
+        <li>Top Speed: Around 205 mph (330 km/h)</li>
+        <li>Quattro all-wheel drive system</li>
+        <li>7-speed dual-clutch automatic transmission</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>German Engineering</h2>
+      <p>The R8 is proudly built by Audi, a German automaker known for precision and engineering excellence. Designed in Germany and assembled with cutting-edge technology, the R8 reflects the country's automotive legacy—combining performance, quality, and innovation in one stunning supercar.</p>
+    </section>
+
+    <div class="image-box">
+      <img src="data:image/jpeg;base64,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" alt="Audi R8 Gen 2" />
+    </div>
+
+    <div class="links">
+      <div class="voltage-button">
+        <button onclick="window.open('https://www.audiusa.com/en/models/r8/r8-heritage/2024/overview/')">Official Audi R8 Website</button>
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <path class="line-1" d="M 0,10 L 100,10" fill="none" stroke-width="2"/>
+          <path class="line-2" d="M 50,10 V 90" fill="none" stroke-width="2"/>
+          <defs>
+            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feDropShadow dx="0" dy="0" stdDeviation="2" flood-color="#6bfeff" flood-opacity="1"/>
+            </filter>
+          </defs>
+        </svg>
+        <div class="dots">
+          <div class="dot dot-1"></div>
+          <div class="dot dot-2"></div>
+          <div class="dot dot-3"></div>
+          <div class="dot dot-4"></div>
+          <div class="dot dot-5"></div>
+        </div>
+      </div>
+
+      <div class="voltage-button">
+        <button onclick="window.open('https://lr100537.github.io/my-website-2/', '_blank')">About Me</button>
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <path class="line-1" d="M 0,10 L 100,10" fill="none" stroke-width="2"/>
+          <path class="line-2" d="M 50,10 V 90" fill="none" stroke-width="2"/>
+          <defs>
+            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feDropShadow dx="0" dy="0" stdDeviation="2" flood-color="#6bfeff" flood-opacity="1"/>
+            </filter>
+          </defs>
+        </svg>
+        <div class="dots">
+          <div class="dot dot-1"></div>
+          <div class="dot dot-2"></div>
+          <div class="dot dot-3"></div>
+          <div class="dot dot-4"></div>
+          <div class="dot dot-5"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="back-to-top">
+    <button onclick="window.scrollTo({top:0, behavior:'smooth'})">Back to Top ↑</button>
+  </div>
+
+  <footer>
+    <p>© 2025 Audi R8 Fan Website</p>
+  </footer>
+
+</body>
+</html>
